@@ -56,7 +56,7 @@ tableList.forEach( stock => {
     
 });
    
-
+let pito = 666
     tableDom.innerHTML += `<tr ${aux}>
                                 <td>${item.name}</td>
                                 <td>${item.stockBar}</td>
