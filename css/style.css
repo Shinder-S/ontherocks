@@ -72,6 +72,10 @@ header{
     z-index: 2;
 }
 
+.events :hover{
+    background-color: rgb(223, 98, 26);
+}
+
 ul.navigation {
     flex-direction: row;    
 }
@@ -95,9 +99,21 @@ h1, h2{
 
     /* ---------------------------- MAIN ------------------------*/
 
-.main{
+main, .form-stock{
     display: flex;
-    
+    flex-direction: column;
+}
+
+.form-stock{
+    padding-top: 10px; 
+}
+
+.out-stock{
+    color: red;
+}
+
+.principal{
+    width: 100%;
 }
 
 .align-left{
@@ -105,9 +121,15 @@ h1, h2{
     padding: 16px;
 }
 
-.pictures img{
-    margin: 15px 0;
-    width: 33%;
+.pictures{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.pic{
+    margin: 15px 2%;
+    width: 40%;
     border-radius: 15%;
     border: 5px solid #ffff;
     text-align: justify;
@@ -115,9 +137,11 @@ h1, h2{
 
 /* ---------------------------- RIGHT SECTION ------------------------*/
 
-.right-section{
+.right-section, .stock{
     display: flex;
 }
+
+
 
 .event-list-container{
     padding: 16px;
@@ -187,20 +211,21 @@ h1, h2{
     padding: 20px;
 }
 
-#contact-form input, #reason, #submit{
-    display: block;
-    font-size: 18px;
-    padding: 10px;
-    margin: 10px;
-}   
+.input-form{
+    width: 100%;
+    height: 37px;
+}
 
 .col{
     display: flex;
     flex-direction: column;
+    width: 100%;
 }
 
 .row{
     margin: 8px 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* ---------------------------- FOOTER ------------------------*/
@@ -219,7 +244,7 @@ footer{
 
 /********************************    DESKTOP     **************************************/
 
-@media screen and (min-width: 850px){
+@media screen and (min-width: 550px){
 
     /****************************** D. NAV ****************************/
 
@@ -285,32 +310,27 @@ footer{
     
     /*************************** D MAIN ***********************************/
     
-    .main{
+    main{
         margin-bottom: 20%;
-    }
-    
-    /*************************** D LEFT/RIGHT *******************************/
-    
-    .box-decoration{
-        display: block; 
-        flex: auto; 
-        width: 64%;   
-        margin: 19% 18% 0 18%;
-        padding-top: 82%;
-        color: whitesmoke;
-        text-align: center;
-        font-size: large; 
-    }
-    
-    .right-section{
         display: flex;
-        margin: 10%;
-        align-items: center;
-        flex-direction: column;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .form-stock{
+        padding: 0 10% 0 10%;
+    }
+
+    /*************************** CONTACT *******************************/
+    .contact{
+        width: 450px;
     }
     
-    .left-section, .pictures{
-        flex-direction: row;
+    /*************************** PICTURES *******************************/
+    
+
+    .pic{
+        width: 25%;
     }
 
     .img-main{       
