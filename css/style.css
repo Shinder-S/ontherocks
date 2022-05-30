@@ -135,51 +135,6 @@ main, .form-stock{
     text-align: justify;
 }
 
-/* ---------------------------- RIGHT SECTION ------------------------*/
-
-.right-section, .stock{
-    display: flex;
-}
-
-
-
-.event-list-container{
-    padding: 16px;
-    display: flex;
-}
-
-/* ---------------------------- LEFT SECTION ------------------------*/
-
-.left-section{
-    display: flex;
-}
-
-.box-decoration{
-    background-color: rgb(223, 98, 26);
-    width: 80%; 
-    padding-top: 20%;  
-    margin-top: 4%; 
-    flex: auto;
-}
-
-.img-main{
-    background-color: rgba(182, 194, 15, 0.842);;
-    width: 80%; 
-    padding-top: 20%;  
-    margin-top: 4%; 
-    flex: auto;
-}
-
-
-.decoration-none{
-    list-style: none;
-}
-
-#form-contact{
-    margin: 0px auto;
-    border: 3px dashed;
-}
-
 /******** table ********/
 
 .table{

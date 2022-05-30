@@ -45,13 +45,14 @@ function show(){
     tableDom.innerHTML= '';
     let aux = '';
     tableDom.innerHTML +=  `<tr>
-                                <td>Drinks</td>
-                                <td>Stock in bar</td> 
-                                <td>Stock in deposit</td>
-                                <td>Observations</td>                           
-                            </tr>`
-
+    <td>Drinks</td>
+    <td>Stock in bar</td> 
+    <td>Stock in deposit</td>
+    <td>Observations</td>                           
+    </tr>`
+    
     tableList.forEach( stock => {
+        console.log((stock.stockBar + stock.stockDeposit), (stock.name));
         if((stock.stockBar + stock.stockDeposit) <= 4){           
            tableDom.innerHTML += `<tr class='out-stock'>
                                     <td>${stock.name}</td>
@@ -59,13 +60,15 @@ function show(){
                                     <td>${stock.stockDeposit}</td>
                                     <td>${stock.observations}</td>                                                                        
                                 </tr>`;
+        }
+        else{
+            tableDom.innerHTML += `<tr>
+                                        <td>${stock.name}</td>
+                                        <td>${stock.stockBar}</td>
+                                        <td>${stock.stockDeposit}</td>
+                                        <td>${stock.observations}</td>                                                                        
+                                    </tr>`;
         }        
-        tableDom.innerHTML += `<tr>
-                                    <td>${stock.name}</td>
-                                    <td>${stock.stockBar}</td>
-                                    <td>${stock.stockDeposit}</td>
-                                    <td>${stock.observations}</td>                                                                        
-                                </tr>`;
     }); 
 
 } 
@@ -78,8 +81,8 @@ function addItem(){
 
     tableList.push({
         name: name,
-        stockBar: stockBar,
-        stockDeposit: stockDeposit,
+        stockBar: parseInt(stockBar),
+        stockDeposit: parseInt(stockDeposit),
         observations: observations
     });
     show();
@@ -93,8 +96,10 @@ function add3Items(){
 }
 
 function delItems(){
-    let tableDom = document.querySelector("#tableList");
-    tableDom.innerHTML= '';
+    //let tableDom = document.querySelector("#tableList");
+    //tableDom.innerHTML= '';
+    tableList = [];
+    show();
 }
 
 show();
