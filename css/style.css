@@ -72,10 +72,6 @@ header{
     z-index: 2;
 }
 
-.events :hover{
-    background-color: rgb(223, 98, 26);
-}
-
 ul.navigation {
     flex-direction: row;    
 }
@@ -97,7 +93,7 @@ h1, h2{
     padding-left: 15px;
 }
 
-    /* ---------------------------- MAIN ------------------------*/
+/* ---------------------------- MAIN ------------------------*/
 
 main, .form-stock{
     display: flex;
@@ -114,6 +110,15 @@ main, .form-stock{
 
 .principal{
     width: 100%;
+}
+
+.events :hover{
+    background-color: rgb(223, 98, 26);
+}
+
+.decoration-none{
+    list-style: none;
+    padding: 15px;
 }
 
 .align-left{
@@ -143,10 +148,14 @@ main, .form-stock{
     border-collapse: collapse;
 }
 
-.stock{
+.section-table{
     max-width: 100vw;
     overflow-x: scroll;
+}
 
+.buttons{
+    display: grid;
+    justify-content: space-around;
 }
 
 .table thead td{
@@ -160,6 +169,7 @@ main, .form-stock{
 }
 
 /******** form ********/
+
 .formTable{    
     display: flex;
     margin: auto;
@@ -182,6 +192,67 @@ main, .form-stock{
     display: flex;
     flex-direction: column;
 }
+
+.contact-button, .btn{
+    align-items: center;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: initial;
+    background-image: none;
+    border-style: none;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    flex-direction: row;
+    flex-shrink: 0;
+    font-family: Eina01,sans-serif;
+    font-size: 16px;
+    font-weight: 800;
+    justify-content: center;
+    line-height: 24px;
+    margin: 0;
+    min-height: 64px;
+    outline: none;
+    overflow: visible;
+    padding: 19px 26px;
+    pointer-events: auto;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    width: auto;
+    word-break: keep-all;
+    z-index: 0; 
+}  
+    
+   @keyframes glowing-contact-button {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+    }
+    
+    .contact-button:after, .btn:after{
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgb(223, 98, 26);
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+    }
 
 /* ---------------------------- FOOTER ------------------------*/
 
@@ -276,9 +347,84 @@ footer{
         padding: 0 10% 0 10%;
     }
 
+    .section-table{
+        overflow-x: auto;
+    }
+
     /*************************** CONTACT *******************************/
     .contact{
         width: 450px;
+    }
+
+    .contact-button, .btn{
+        padding: 19px 32px;
+        margin-top: 15px;
+    }
+    
+    .contact-button:before, .contact-button:after, .btn:before, .btn:after {
+    border-radius: 40px;
+    }
+    
+    .contact-button:before, .btn:before{
+    background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -2;
+    }
+    
+    .contact-button:after, .btn:after {
+    background-color: initial;
+    background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+    bottom: 4px;
+    content: "";
+    display: block;
+    left: 4px;
+    overflow: hidden;
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    transition: all 100ms ease-out;
+    z-index: -1;
+    }
+    
+    .contact-button:hover:not(:disabled):before, .btn:hover:not(:disabled):before {
+    background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+    }
+    
+    .contact-button:hover:not(:disabled):after, .btn:hover:not(:disabled):after {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    transition-timing-function: ease-in;
+    opacity: 0;
+    }
+    
+    .contact-button:active:not(:disabled), .btn:active:not(:disabled) {
+    color: #ccc;
+    }
+    
+    .contact-button:active:not(:disabled):before, .btn:active:not(:disabled):before {
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+    }
+    
+    .contact-button:active:not(:disabled):after, .btn:active:not(:disabled):after {
+    background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
+    bottom: 4px;
+    left: 4px;
+    right: 4px;
+    top: 4px;
+    }
+    
+    .contact-button:disabled, .btn:disabled {
+    cursor: default;
+    opacity: .24;
     }
     
     /*************************** PICTURES *******************************/

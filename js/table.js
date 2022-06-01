@@ -45,11 +45,11 @@ function show(){
     tableDom.innerHTML= '';
     let aux = '';
     tableDom.innerHTML +=  `<tr>
-    <td>Drinks</td>
-    <td>Stock in bar</td> 
-    <td>Stock in deposit</td>
-    <td>Observations</td>                           
-    </tr>`
+                                <td>Drinks</td>
+                                <td>Stock in bar</td> 
+                                <td>Stock in deposit</td>
+                                <td>Observations</td>                           
+                            </tr>`
     
     tableList.forEach( stock => {
         console.log((stock.stockBar + stock.stockDeposit), (stock.name));
@@ -79,13 +79,19 @@ function addItem(){
     let stockDeposit = document.querySelector("#stock-deposit").value;
     let observations = document.querySelector("#observations").value;
 
-    tableList.push({
-        name: name,
-        stockBar: parseInt(stockBar),
-        stockDeposit: parseInt(stockDeposit),
-        observations: observations
-    });
-    show();
+    if(name != '' && stockBar != NaN && stockDeposit != NaN && observations != ''){
+        tableList.push({
+            name: name,
+            stockBar: parseInt(stockBar),
+            stockDeposit: parseInt(stockDeposit),
+            observations: observations
+        });
+        show();
+    }
+    else{
+        alert("Complete to submit");
+    }
+
 
 }
 
