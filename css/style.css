@@ -112,10 +112,6 @@ main, .form-stock{
     width: 100%;
 }
 
-.events :hover{
-    background-color: rgb(223, 98, 26);
-}
-
 .decoration-none{
     list-style: none;
     padding: 15px;
@@ -342,6 +338,12 @@ footer{
         flex-direction: row;
         justify-content: center;
     }
+
+    
+    .events :hover{
+        background-color: rgb(223, 98, 26);
+}
+
 
     .form-stock{
         padding: 0 10% 0 10%;

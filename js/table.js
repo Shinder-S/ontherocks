@@ -52,7 +52,7 @@ function show(){
                             </tr>`
     
     tableList.forEach( stock => {
-        console.log((stock.stockBar + stock.stockDeposit), (stock.name));
+        //console.log((stock.stockBar + stock.stockDeposit), (stock.name));
         if((stock.stockBar + stock.stockDeposit) <= 4){           
            tableDom.innerHTML += `<tr class='out-stock'>
                                     <td>${stock.name}</td>
