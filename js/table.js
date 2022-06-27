@@ -8,34 +8,34 @@ document.querySelector("#btn-del").addEventListener("click", delItems);
 
 let tableList = [    
             {
-                name: "Grey Goose",
-                stockBar: 4,
-                stockDeposit: 2,
-                observations: "French D.O.C."
+                "name" : "Grey Goose",
+                "stockBar": 4,
+                "stockDeposit": 2,
+                "observations": "French D.O.C."
             },
             {
-                name: "Maker's 46",
-                stockBar: 2,
-                stockDeposit: 4,
-                observations: "Best bourbon 2022"
+                "name": "Maker's 46",
+                "stockBar": 2,
+                "stockDeposit": 4,
+                "observations": "Best bourbon 2022"
             },
             {
-                name: "Hendrix",
-                stockBar: 1,
-                stockDeposit: 3,
-                observations: "Rock & gin tonic"
+                "name": "Hendrix",
+                "stockBar": 1,
+                "stockDeposit": 3,
+                "observations": "Rock & gin tonic"
             },
             {
-                name: "Tanqueray Sevilla",
-                stockBar: 2,
-                stockDeposit: 6,
-                observations: "Made with orange peel"
+                "name": "Tanqueray Sevilla",
+                "stockBar": 2,
+                "stockDeposit": 6,
+                "observations": "Made with orange peel"
             },
             {
-                name: "Habanna",
-                stockBar: 4,
-                stockDeposit: 3,
-                observations: "Special for mojito's"
+                "name": "Habanna",
+                "stockBar": 4,
+                "stockDeposit": 3,
+                "observations": "Special for mojito's"
                 }                                       
 ];
 
