@@ -36,13 +36,14 @@
         <main>
             <section class="section-table">
                 <table id="tableList" class="table">
-
+                    
                 </table>
             </section>
+            
             <section class= "section-form">
-                <form class="form-stock">    
+                <form class="form-stock" id="form-stock">    
                     <label for="drink">Enter the drink</label>
-                    <input type="text" name="drink-name" id="drink-name">
+                    <input type="text" id="drink-name" name="drink-name">
     
                     <label for="stock-bar">Stock Bar</label>
                     <input type="number" id="stock-bar" name="stock-bar">
@@ -53,10 +54,12 @@
                     <label for="observations">Observations</label>
                     <input type="text" name="observations" id="observations">
                 </form>
-                    <div class="buttons">    
-                        <button type="button" id="btn-add" class="btn">Agregar</button>
-                        <button type="button" id="btn-add3" class="btn">Agregar 3</button>
-                        <button type="button" id="btn-del" class="btn">Borrar</button>
+                    <div class="buttons" id="buttons">    
+                        <button type="button" id="btn-add" class="btn">Add</button>
+                        <button type="button" id="btn-add3" class="btn">Add 3</button>
+                        <button type="button" id="btn-edit" class="btn">Edit</button>
+                        <button type="button" id="btn-delete" class="btn">Delete</button>
+                        <button type="button" id="btn-filter" class="btn">Filter</button>
                     </div>  
                 </div>
             </section> 
@@ -72,7 +75,6 @@
                 </a>
             </div>
         </footer>
-       <script src="js/go.js"></script>
-       <script src="js/table.js"></script>
+        <script src="js/services.js"></script> 
 </body>
 </html>
