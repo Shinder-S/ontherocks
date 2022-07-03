@@ -46,27 +46,26 @@ async function getOneFromApi(id){
 
 async function postItemStockApi(item){
         //Upload an item to the api contact section
-    try{
-        let ans = await fetch(`${url}`,{
+        console.log(item);
+        fetch(`${url}`,{
             "method":"POST",
             "headers":{"Content-type":"aplication/json"},
             "body":JSON.stringify(item)
-        });
-        if(ans.status === 201){
-            console.log(ans);
-        }
-    }
-    catch(e){
-        alert("Error when post item");
-    }
+        }).then(r =>{
+            console.log(r);
+            inic();
+        }).catch(e=>{
+            console.log(e);
+        })   
+
 }
 
-async function editItemApi(id){       //Edit an item of the stock section api
+async function editItemApi(){       //Edit an item of the stock section api
     try{
-        let ans = await fetch(`${url}stock/${id}`,{
+        let ans = await fetch(`${url}`,{
             "method":"PUT",
             "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(item)
+            "body":JSON.stringify(id)
         });
         if(ans.status === 200){
             alert("Successfully edited")
@@ -81,26 +80,21 @@ async function editItemApi(id){       //Edit an item of the stock section api
 }
 
 async function deleteItemApi(id){               //Delete an item from api stock section
-    try{
-        let res = await fetch(`${url}stock/${id}`,{
-            "method":"DELETE"
+    let item = itemArrayStock[id];
+    try {
+        let response = await fetch(`${url}?search=${id}`, {
+            method: "DELETE",
         });
-        if(res.status == 200){
-            alert("Successfully removed")
-        }
-        else{
-            alert("Item was not deleted")
-        }
-    }
-    catch(error){
-        alert("An error occurred while deleting")
+    } catch (err) {
+        alert("error when delete")
     }
 }
+
 
 async function arrayFilterApi(id){                //Filter an item of the stock section api
     let items;
     try{
-        let ans = await fetch(`${url}stock?search=${id}`);
+        let ans = await fetch(`${url}?search=${id}`);
         items = await ans.json();
         if (ans.ok){
             console.log(items);
@@ -194,6 +188,7 @@ function itemArrayStock(){
     let stockBar = formStock.get('stock-bar');
     let stockDeposit = formStock.get('stock-deposit');
     let observations = formStock.get('observations');
+    let id = formStock.get('id');
     
     let item = {
         "drink": drink,
@@ -211,31 +206,31 @@ function addItemStock(e){           //Add to the visual in table stock and send 
     postItemStockApi(item);
     getAllFromApi();
     console.log(item);
-    show(itemArrayStock);
+    show();
 }
 
 function add3(e){
     e.preventDefault();
-    for (let i = 1; i < 3; i++){
+    for (let i = 0; i < 3; i++){
         let item = itemArrayStock();
         arrayStock.push(item);
         postItemStockApi(item);
-        loadRowTableList(item, arrayStock.length);
+        getAllFromApi();
+        show(itemArrayStock);
     }
 }
 
-async function deleteItem(){
-    await deleteItemApi(getOneFromApi("#delete"));
+async function deleteItem(item){
+    let aux = getOneFromApi(item);
+    await deleteItemApi(aux);
     tableList.innerHTML = "";
-    loadTitlesStock();
-    loadRowsStock();
+    show();
 }
 
-async function editItem(){
-    let itemEdited = await getOneFromApi();
+async function editItem(id){
+    let itemEdited = await editItemApi(id);
     tableList.innerHTML = "";
-    loadRowTableList();
-    loadRowsTableList();
+    show();
 }
 
 async function filterItem(){
