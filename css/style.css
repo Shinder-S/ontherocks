@@ -39,6 +39,38 @@ header{
     padding: 25px;
 }
 
+.root{
+    display: flex;
+    flex-direction: row;
+}
+
+#content{
+    display: flex;
+    display: block;
+    width: 800px;
+    height: 250px;
+    line-height: 250px;
+    border: 2px solid #555;
+    margin: 30px;
+    text-align: center;
+}
+
+.route{
+    cursor: pointer;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
+    border: 2px solid black;
+    position: relative;
+    background: white;
+    text-align: center;
+    margin: 16px;
+}
+
+.route.selected {
+    background: #ff7426;
+}
     /* ---------------------------- NAV ------------------------*/
 
 
