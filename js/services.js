@@ -1,17 +1,14 @@
 
 "use strict"
 // I define the functions that I am going to have in the api
+const url = "https://62c21961eff7f7856f19b916.mockapi.io/stock";
 let arrayStock = [];
-const url = "https://60cba6b821337e0017e45320.mockapi.io/api/v1/stock";
 
-
-async function getAllFromApi(){ 
-    let items;         //Returns the selected array of the stock section
+async function getAllFromApi(){          //Returns the selected array of the stock section
     try{
         let aux = await fetch(`${url}`,{
             "method":"GET",
             "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(items)
         });
         arrayStock = await aux.json();
         if(aux.ok){
@@ -25,12 +22,10 @@ async function getAllFromApi(){
 }
 
 async function getOneFromApi(id){
-    let item;
     try{
         let aux = await fetch(`${url}/${id}`,{
         "method":"GET",
-            "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(items)
+        "headers":{"Content-type":"aplication/json"},
         });
         arrayStock = await aux.json();
         if(aux.ok){
@@ -44,35 +39,29 @@ async function getOneFromApi(id){
 }
 
 
-async function postItemStockApi(item){
-        //Upload an item to the api contact section
-        console.log(item);
-        fetch(`${url}`,{
+async function postItemStockApi(item){      //Upload an item to the api contact section
+    try{
+        let aux = await fetch(`${url}`,{
             "method":"POST",
             "headers":{"Content-type":"aplication/json"},
             "body":JSON.stringify(item)
-        }).then(r =>{
-            console.log(r);
-            inic();
-        }).catch(e=>{
-            console.log(e);
-        })   
+        })
+        console.log(aux);  
+    }
+    catch(error){
+        alert("error when post item api")
+    }
 
 }
 
-async function editItemApi(){       //Edit an item of the stock section api
+async function editItemApi(item, id){
+    console.log(item);       //Edit an item of the stock section api
     try{
-        let ans = await fetch(`${url}`,{
+        let ans = await fetch(`${url}/${id}`,{
             "method":"PUT",
             "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(id)
+            "body":JSON.stringify(item)
         });
-        if(ans.status === 200){
-            alert("Successfully edited")
-        }
-        else{
-            alert("Item was not edited")
-        }
     }
     catch(e){
         alert("Error when put item");
@@ -80,10 +69,10 @@ async function editItemApi(){       //Edit an item of the stock section api
 }
 
 async function deleteItemApi(id){               //Delete an item from api stock section
-    let item = itemArrayStock[id];
     try {
-        let response = await fetch(`${url}?search=${id}`, {
-            method: "DELETE",
+        let aux = await fetch(`${url}/${id}`,{
+            "method": "DELETE",
+            "headers":{"Content-type":"aplication/json"},
         });
     } catch (err) {
         alert("error when delete")
@@ -133,7 +122,7 @@ async function loadRowsTableList(){             //Load rows from stock table whe
     }
 }
 
-function loadRowTableList(){ //Load rows one by one in the table stock
+async function loadRowTableList(){ //Load rows one by one in the table stock
     let item = arrayStock;
     let drink = item.drink;
     let stockBar = item.stockBar;
@@ -153,6 +142,7 @@ function show(){
     tableList.innerHTML += `
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Drink</th>
                                     <th scope="col">StockBar</th>
                                     <th scope="col">StockDeposit</th>
@@ -163,6 +153,7 @@ function show(){
     arrayStock.forEach( stock => {
         if((stock.stockBar + stock.stockDeposit) <= 4){           
             tableList.innerHTML += `<tr class='out-stock'>
+                                    <td>${stock.id}</td>
                                     <td>${stock.drink}</td>
                                     <td>${stock.stockBar}</td>
                                     <td>${stock.stockDeposit}</td>
@@ -171,6 +162,7 @@ function show(){
         }
         else{
             tableList.innerHTML += `<tr>
+                                        <td>${stock.id}</td>
                                         <td>${stock.drink}</td>
                                         <td>${stock.stockBar}</td>
                                         <td>${stock.stockDeposit}</td>
@@ -188,7 +180,6 @@ function itemArrayStock(){
     let stockBar = formStock.get('stock-bar');
     let stockDeposit = formStock.get('stock-deposit');
     let observations = formStock.get('observations');
-    let id = formStock.get('id');
     
     let item = {
         "drink": drink,
@@ -196,40 +187,37 @@ function itemArrayStock(){
         "stockDeposit": stockDeposit,
         "observations": observations
     }
-
+    console.log(item);
     return item;
 }
 
-function addItemStock(e){           //Add to the visual in table stock and send an item to the api
-    e.preventDefault();
+async function addItemStock(){           //Add to the visual in table stock and send an item to the api
     let item = itemArrayStock();
-    postItemStockApi(item);
-    getAllFromApi();
-    console.log(item);
+    await postItemStockApi(item);
+    await getAllFromApi();
     show();
 }
 
-function add3(e){
-    e.preventDefault();
+async function add3(){
     for (let i = 0; i < 3; i++){
-        let item = itemArrayStock();
-        arrayStock.push(item);
-        postItemStockApi(item);
-        getAllFromApi();
-        show(itemArrayStock);
+        await addItemStock();
     }
 }
 
-async function deleteItem(item){
-    let aux = getOneFromApi(item);
-    await deleteItemApi(aux);
-    tableList.innerHTML = "";
+async function deleteItem(){
+    let id = document.getElementById("delete-edit-input").value;
+    console.log(id);
+    await deleteItemApi(id);
+    await getAllFromApi();
     show();
 }
 
-async function editItem(id){
-    let itemEdited = await editItemApi(id);
-    tableList.innerHTML = "";
+async function editItem(){
+    let id = document.getElementById("delete-edit-input").value;
+    console.log(id)
+    let item = itemArrayStock();    
+    await editItemApi(item, id);
+    await getAllFromApi();
     show();
 }
 
