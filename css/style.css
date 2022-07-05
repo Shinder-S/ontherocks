@@ -39,7 +39,7 @@ header{
     padding: 25px;
 }
 
-.root{
+#root{
     display: flex;
     flex-direction: row;
 }
@@ -47,9 +47,8 @@ header{
 #content{
     display: flex;
     display: block;
-    width: 800px;
-    height: 250px;
-    line-height: 250px;
+    width: calc(100%-60px);
+    height: auto;
     border: 2px solid #555;
     margin: 30px;
     text-align: center;
@@ -58,19 +57,14 @@ header{
 .route{
     cursor: pointer;
     justify-content: center;
-    width: 150px;
+    width: 100%;
     height: 50px;
-    line-height: 50px;
-    border: 2px solid black;
+    border: 2px solid rgba(182, 194, 15);
     position: relative;
-    background: white;
     text-align: center;
     margin: 16px;
 }
 
-.route.selected {
-    background: #ff7426;
-}
     /* ---------------------------- NAV ------------------------*/
 
 
@@ -221,7 +215,7 @@ main, .form-stock{
     flex-direction: column;
 }
 
-.contact-button, .btn{
+.contact-button, .btn, .route.selected{
     align-items: center;
     appearance: none;
     background-clip: padding-box;
@@ -270,7 +264,7 @@ main, .form-stock{
     }
     }
     
-    .contact-button:after, .btn:after{
+    .contact-button:after, .btn:after, .route.selected:after{
     z-index: -1;
     content: "";
     position: absolute;
@@ -390,16 +384,16 @@ footer{
         width: 450px;
     }
 
-    .contact-button, .btn{
+    .contact-button, .btn, .route.selected{
         padding: 19px 32px;
         margin-top: 15px;
     }
     
-    .contact-button:before, .contact-button:after, .btn:before, .btn:after {
+    .contact-button:before, .contact-button:after, .btn:before, .btn:after, .route.selected:before, .route.selected:after {
     border-radius: 40px;
     }
     
-    .contact-button:before, .btn:before{
+    .contact-button:before, .btn:before, .route.selected:before{
     background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
     content: "";
     display: block;
@@ -412,7 +406,7 @@ footer{
     z-index: -2;
     }
     
-    .contact-button:after, .btn:after {
+    .contact-button:after, .btn:after, .route.selected:after{
     background-color: initial;
     background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
     bottom: 4px;
@@ -440,15 +434,15 @@ footer{
     opacity: 0;
     }
     
-    .contact-button:active:not(:disabled), .btn:active:not(:disabled) {
+    .contact-button:active:not(:disabled), .btn:active:not(:disabled), .route.selected:active:not(:disabled){
     color: #ccc;
     }
     
-    .contact-button:active:not(:disabled):before, .btn:active:not(:disabled):before {
+    .contact-button:active:not(:disabled):before, .btn:active:not(:disabled):before, .route.selected:active:not(:disabled):before {
     background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
     }
     
-    .contact-button:active:not(:disabled):after, .btn:active:not(:disabled):after {
+    .contact-button:active:not(:disabled):after, .btn:active:not(:disabled):after, .route.selected:active:not(:disabled):after{
     background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
     bottom: 4px;
     left: 4px;
@@ -456,7 +450,7 @@ footer{
     top: 4px;
     }
     
-    .contact-button:disabled, .btn:disabled {
+    .contact-button:disabled, .btn:disabled, .route.selected:disabled {
     cursor: default;
     opacity: .24;
     }

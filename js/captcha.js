@@ -1,3 +1,11 @@
+/**
+ * 
+    This page was used in the second installment to implement the requested captcha
+
+    for this delivery no change was made, except the name to be more descriptive 
+
+*/
+
 let randomnumber = (Math.floor(Math.random()*100) +1);
 document.getElementById('valueCaptcha').innerHTML =randomnumber;
 

@@ -8,10 +8,10 @@ function toggleMenu() {
 }; 
 ***/
 function selected_tab(id){
-    document.querySelectorAll("nav-item")
+    document.querySelectorAll("root")
     .forEach((item) => item.classList.remove("selected"));
-    document.querySelectorAll("a" + id)
-    .forEach((item)=> item.classList.add("selected"));
+    document.querySelectorAll("#" + id)
+        .forEach((item) => item.classList.add("selected"));
 }
 
 async function load_content(id){
@@ -48,7 +48,6 @@ window.onload = (event) =>{
 
 window.addEventListener("popstate", (event)=> {
     let stateId = event.state.id;
-    console.log("stateId =", stateId);
     selected_tab(stateId);
     load_content(stateId);
 })
