@@ -1,14 +1,15 @@
 
 "use strict"
 // I define the functions that I am going to have in the api
-const url = "https://62c21961eff7f7856f19b916.mockapi.io/stock";
+const url = "https://62c21961eff7f7856f19b916.mockapi.io/stock/";
+
 let arrayStock = [];
 
 async function getAllFromApi(){          //Returns the selected array of the stock section
     try{
         let aux = await fetch(`${url}`,{
-            "method":"GET",
-            "headers":{"Content-type":"aplication/json"},
+            "method": "GET",
+            "headers": {"Content-type":"application/json"},
         });
         arrayStock = await aux.json();
         if(aux.ok){
@@ -21,32 +22,13 @@ async function getAllFromApi(){          //Returns the selected array of the sto
     }
 }
 
-async function getOneFromApi(id){
-    try{
-        let aux = await fetch(`${url}/${id}`,{
-        "method":"GET",
-        "headers":{"Content-type":"aplication/json"},
-        });
-        arrayStock = await aux.json();
-        if(aux.ok){
-            console.log(arrayStock);
-        }
-    }
-    catch(error){
-        alert("Error trying to fetch one data from server");
-        arrayStock = [];
-    }
-}
-
-
 async function postItemStockApi(item){      //Upload an item to the api contact section
     try{
         let aux = await fetch(`${url}`,{
-            "method":"POST",
-            "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(item)
+            "method": "POST",
+            "headers": {"Content-type":"application/json"},
+            "body": JSON.stringify(item)
         })
-        console.log(aux);  
     }
     catch(error){
         alert("error when post item api")
@@ -54,13 +36,12 @@ async function postItemStockApi(item){      //Upload an item to the api contact 
 
 }
 
-async function editItemApi(item, id){
-    console.log(item);       //Edit an item of the stock section api
+async function editItemApi(item, id){           //Edit an item of the stock section api
     try{
-        let ans = await fetch(`${url}/${id}`,{
-            "method":"PUT",
-            "headers":{"Content-type":"aplication/json"},
-            "body":JSON.stringify(item)
+        let ans = await fetch(`${url}${id}`,{
+            "method": "PUT",
+            "headers": {"Content-type":"application/json"},
+            "body": JSON.stringify(item)
         });
     }
     catch(e){
@@ -72,30 +53,11 @@ async function deleteItemApi(id){               //Delete an item from api stock 
     try {
         let aux = await fetch(`${url}/${id}`,{
             "method": "DELETE",
-            "headers":{"Content-type":"aplication/json"},
+            "headers":{"Content-type":"application/json"},
         });
     } catch (err) {
         alert("error when delete")
     }
-}
-
-
-async function arrayFilterApi(id){                //Filter an item of the stock section api
-    let items;
-    try{
-        let ans = await fetch(`${url}?search=${id}`);
-        items = await ans.json();
-        if (ans.ok){
-            console.log(items);
-        }
-        else{
-            alert("Name is not found")
-        }
-    }
-    catch(error){
-        alert("Error when filtering reached the catch")
-    }
-    return items;
 }
 
 
@@ -107,7 +69,7 @@ async function arrayFilterApi(id){                //Filter an item of the stock 
 
 async function loadRowsTableList(){             //Load rows from stock table when page is loaded
     try{
-        arrayStock = getArrayStockApi();
+        arrayStock = await getArrayStockApi();
         if(arrayStock.length != 0){
             for (let i = 0; i < arrayStock.length; i++){
                 loadRowTableList(arrayStock[i]);
@@ -150,8 +112,8 @@ function show(){
                                 </tr>
                             </thead>`
     
-    arrayStock.forEach( stock => {
-        if((stock.stockBar + stock.stockDeposit) <= 4){           
+    arrayStock.forEach(stock => {
+        if ((stock.stockBar + stock.stockDeposit) <= 4) {
             tableList.innerHTML += `<tr class='out-stock'>
                                     <td>${stock.id}</td>
                                     <td>${stock.drink}</td>
@@ -160,7 +122,7 @@ function show(){
                                     <td>${stock.observations}</td>                                                                        
                                 </tr>`;
         }
-        else{
+        else {
             tableList.innerHTML += `<tr>
                                         <td>${stock.id}</td>
                                         <td>${stock.drink}</td>
@@ -168,12 +130,11 @@ function show(){
                                         <td>${stock.stockDeposit}</td>
                                         <td>${stock.observations}</td>                                                                        
                                     </tr>`;
-        }        
+        }
     });
 }
 
-function itemArrayStock(){
-
+function createItemFromInputs(){
     let form = document.getElementById('form-stock');
     let formStock = new FormData(form);
     let drink = formStock.get('drink-name');
@@ -187,15 +148,32 @@ function itemArrayStock(){
         "stockDeposit": stockDeposit,
         "observations": observations
     }
-    console.log(item);
     return item;
 }
 
+function checkingfields (){
+    try{
+        let infoform = document.getElementById('form-stock').elements;
+        if (infoform[0].value == '' || infoform[1].value == '' || infoform[2].value == '' ||infoform[3].value == '') {
+            alert('Fields with * are required. Complete to submit.')
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    catch(e){
+        alert("Error when check fields")
+    } 
+}
+
 async function addItemStock(){           //Add to the visual in table stock and send an item to the api
-    let item = itemArrayStock();
-    await postItemStockApi(item);
-    await getAllFromApi();
-    show();
+    if(checkingfields() == true){
+        let item = createItemFromInputs();
+        await postItemStockApi(item);
+        await getAllFromApi();
+        show();
+    }
 }
 
 async function add3(){
@@ -214,32 +192,10 @@ async function deleteItem(){
 
 async function editItem(){
     let id = document.getElementById("delete-edit-input").value;
-    console.log(id)
-    let item = itemArrayStock();    
+    let item = createItemFromInputs();    
     await editItemApi(item, id);
     await getAllFromApi();
     show();
-}
-
-async function filterItem(){
-    try{
-        let itemFilter = document.querySelector("#filter").value;
-        arrayStock = await getOneFromApi(itemFilter);
-        tableList.innerHTML = "",
-        loadTitlesStock();
-
-        if(arrayStock.length != 0){
-            for (let index = 0; index < arrayStock.length; index++){
-                loadRowTableList(arrayStock[index], index+1);
-            }
-        }
-        else{
-            alert("Item is not found");
-        }
-    }
-    catch{
-        alert("Item is not found");
-    }
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -248,11 +204,10 @@ async function filterItem(){
 
 /**** BOTONES ****/
 
-document.getElementById("btn-add").addEventListener("click", addItemStock);
+document.querySelector("#btn-add").addEventListener("click", addItemStock);
 document.querySelector("#btn-add3").addEventListener("click", add3);
 document.querySelector("#btn-delete").addEventListener("click", deleteItem);
 document.querySelector("#btn-edit").addEventListener("click", editItem);
-document.querySelector("#btn-filter").addEventListener("click", filterItem);
 
 let tableList = document.querySelector("#tableList");
 async function inic(){

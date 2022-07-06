@@ -6,34 +6,38 @@
 
 */
 
-let randomnumber = (Math.floor(Math.random()*100) +1);
-document.getElementById('valueCaptcha').innerHTML =randomnumber;
+/**
+ * We start by creating a variable with a random number, using that library
 
-let infoform = document.getElementById('contact-form').elements;
-console.log(checkingfields);
+with infoform the elements that the user enters are taken, through the id contact-form
+ 
+I add an event that when listening to the click executes the function that checks if the fields are complete
 
-let submit = document.getElementById('submit');
+Finally, the function that takes the random value created at the beginning is defined, 
 
-submit.addEventListener("click", checkingfields);
+and corroborates it with the one entered by the user (captcha) 
+ */
+
+let randomNumber = (Math.floor(Math.random()*100) +1);
+document.getElementById('valueCaptcha').innerHTML =randomNumber;
+let infoForm = document.getElementById('contact-form').elements;
+document.getElementById('submit').addEventListener("click", checkingfields);
 
 
 function checkingfields (){
-
-        if (infoform[0].value == '' || infoform[1].value == '' || infoform[2].value == '' ||infoform[3].value == '' || infoform[4].value == '') {
+        if (infoForm[0].value == '' || infoForm[1].value == '' || infoForm[2].value == '' ||infoForm[3].value == '' || infoForm[4].value == '') {
             return alert('Fields with * are required. Complete to submit.')
         }
-        if (infoform[0].value == '' || infoform[1].value !== '' || infoform[2].value !== '' || infoform[3].value !== '' || infoform[4].value !== ''){
+        if (infoForm[0].value == '' || infoForm[1].value !== '' || infoForm[2].value !== '' || infoForm[3].value !== '' || infoForm[4].value !== ''){
             choose();
         }
 }
 
 function choose(){
     let number = document.getElementById('captcha').value;
-
-    if (number == randomnumber) 
-        window.confirm("Captcha Ok");
+    if (number == randomNumber) 
+        alert("Captcha Ok");
     else{
-        window.confirm
-        ("Captcha erroneo")
+        alert("Captcha erroneo");
     }
 }

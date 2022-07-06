@@ -63,13 +63,13 @@ header{
     position: relative;
     text-align: center;
     margin: 16px;
+    border-radius: 20px;
 }
 
     /* ---------------------------- NAV ------------------------*/
 
 
 .menu{         
-    grid-area: menu;
     height: 65px;
     width: 100%;
     display: flex;
@@ -88,6 +88,7 @@ header{
     flex-direction: column;
     z-index: 1;
     padding: 10px;
+    border-radius: 20px;
 }
 
 .btn-menu{
@@ -110,7 +111,9 @@ ul.show{
     padding: 20px;
     list-style: none;
     display: inline;
-    background-color: rgba(182, 194, 15);
+    border: 2px solid rgba(182, 194, 15);
+    border-radius: 20px;
+    margin: 16px;
 }
 
 h1, h2{
@@ -130,7 +133,7 @@ main, .form-stock{
     padding-top: 10px; 
 }
 
-.out-stock{
+#out-stock{
     color: red;
 }
 
@@ -215,7 +218,7 @@ main, .form-stock{
     flex-direction: column;
 }
 
-.contact-button, .btn, .route.selected{
+.contact-button, .btn{
     align-items: center;
     appearance: none;
     background-clip: padding-box;
@@ -264,7 +267,7 @@ main, .form-stock{
     }
     }
     
-    .contact-button:after, .btn:after, .route.selected:after{
+    .contact-button:after, .btn:after{
     z-index: -1;
     content: "";
     position: absolute;
@@ -313,10 +316,6 @@ footer{
         width: auto;
     }
 
-    .nav-item{
-        background-color: black;
-    }
-
     .nav-item a {
         padding: 6px;
         font-size: 18px;
@@ -324,16 +323,14 @@ footer{
         text-decoration: none;
         transition: .4s;
     }
-
-    .nav-item a:hover{
-        border-bottom: solid 2px rgba(182, 194, 15);
-        font-size: 22px;
-    }
+    /**
     
-    .nav-menu li:hover {
-        background-color: black;
-    }   
-
+        .nav-item a:hover{
+            border-bottom: solid 2px rgba(182, 194, 15);
+            font-size: 22px;
+        }
+        */
+    
     .nav-menu li:active{
         background-color: cadetblue;
     }
@@ -384,16 +381,16 @@ footer{
         width: 450px;
     }
 
-    .contact-button, .btn, .route.selected{
+    .contact-button, .btn{
         padding: 19px 32px;
         margin-top: 15px;
     }
     
-    .contact-button:before, .contact-button:after, .btn:before, .btn:after, .route.selected:before, .route.selected:after {
+    .contact-button:before, .contact-button:after, .btn:before, .btn:after{
     border-radius: 40px;
     }
     
-    .contact-button:before, .btn:before, .route.selected:before{
+    .contact-button:before, .btn:before{
     background-image: linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
     content: "";
     display: block;
@@ -406,7 +403,7 @@ footer{
     z-index: -2;
     }
     
-    .contact-button:after, .btn:after, .route.selected:after{
+    .contact-button:after, .btn:after{
     background-color: initial;
     background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
     bottom: 4px;
@@ -434,15 +431,15 @@ footer{
     opacity: 0;
     }
     
-    .contact-button:active:not(:disabled), .btn:active:not(:disabled), .route.selected:active:not(:disabled){
+    .contact-button:active:not(:disabled), .btn:active:not(:disabled){
     color: #ccc;
     }
     
-    .contact-button:active:not(:disabled):before, .btn:active:not(:disabled):before, .route.selected:active:not(:disabled):before {
+    .contact-button:active:not(:disabled):before, .btn:active:not(:disabled):before{
     background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
     }
     
-    .contact-button:active:not(:disabled):after, .btn:active:not(:disabled):after, .route.selected:active:not(:disabled):after{
+    .contact-button:active:not(:disabled):after, .btn:active:not(:disabled):after{
     background-image: linear-gradient(#541a0f 0, #0c0d0d 100%);
     bottom: 4px;
     left: 4px;
@@ -450,7 +447,7 @@ footer{
     top: 4px;
     }
     
-    .contact-button:disabled, .btn:disabled, .route.selected:disabled {
+    .contact-button:disabled, .btn:disabled {
     cursor: default;
     opacity: .24;
     }

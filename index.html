@@ -11,17 +11,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    
-        <nav id="root">
-              <section class="route" id="index">Index</section>
-              <section class="route" id="stock">Stock</section>
-              <section class="route" id="pictures">Pictures</section>
-              <section class="route" id="contact">Contact</section>
+    <div class="container">
+        <nav class="menu">
+                <a href="index.html" class="logo-nav"><img src="images/logo.jpg" alt="logo" class="logo"></a>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="stock.html">Stock</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pictures.html">Pictures</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html">Contact Us</a>
+                    </li>
+                </ul>
+                <span class="btn-menu">
+                    Go to
+                </span>
         </nav>
         <header class="header">
             <h1>Welcome to On The Rocks</h1>
         </header>
-        <main id="content">Content Loading...</main>
+        <main id="content"></main>
         <footer>
             <div class="network">
                 Todos los derechos reservados <a href="https://www.instagram.com/ontherocksbarramovil/">
@@ -32,6 +43,7 @@
                 </a>
             </div>
         </footer>
+    </div>
     <script src="js/go.js"></script>
 </body>
 </html>
