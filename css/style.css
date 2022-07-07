@@ -105,6 +105,7 @@ ul.navigation {
 
 ul.show{
     top: 65px;
+    position: relative;
 }
 
 .nav-item{
@@ -114,6 +115,10 @@ ul.show{
     border: 2px solid rgba(182, 194, 15);
     border-radius: 20px;
     margin: 16px;
+}
+
+li.nav-item{
+    background-color: #555;
 }
 
 h1, h2{
@@ -129,6 +134,12 @@ main, .form-stock{
     flex-direction: column;
 }
 
+.presentation{
+    margin-top: 30px;
+    text-align: center;
+    padding: 10px;
+}
+
 .form-stock{
     padding-top: 10px; 
 }
@@ -139,6 +150,10 @@ main, .form-stock{
 
 .principal{
     width: 100%;
+}
+
+p{
+    margin: 15px;
 }
 
 .decoration-none{
@@ -157,12 +172,11 @@ main, .form-stock{
     justify-content: center;
 }
 
-.pic{
+.pic, .pictures-index{
     margin: 15px 2%;
     width: 40%;
     border-radius: 15%;
     border: 5px solid #ffff;
-    text-align: justify;
 }
 
 /******** table ********/
@@ -310,7 +324,7 @@ footer{
         position: static;           
         flex-direction: row;
         align-items: center;
-        margin-right: 30px;
+        margin-top: 30px;
         transition: none;
         height: 66px;
         width: auto;
@@ -360,6 +374,10 @@ footer{
         display: flex;
         flex-direction: row;
         justify-content: center;
+    }
+
+    .pictures{
+        
     }
 
     
